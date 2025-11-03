@@ -73,7 +73,7 @@ const markup = images.map(
   <a class="gallery-link" href="${original}">
     <img
       class="gallery-image"
-      src="${previev}"
+      src="${preview}"
       data-source="${original}"
       alt="${description}"
     />
@@ -84,6 +84,11 @@ const markup = images.map(
 gallery.insertAdjacentHTML('beforeend', markup);
 
 gallery.addEventListener('click', (e) => {
-    e.preventDefault();
-    if (e.target.nodeName !== 'IMG') return;
+  e.preventDefault();
+  
+  const isImage = e.target.classList.contains('gallery-image');
+  if (!isImage) return;
+
+  const largeImageURL = e.target.dataset.source;
+  console.log(largeImageURL);
 });
